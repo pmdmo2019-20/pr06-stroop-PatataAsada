@@ -93,4 +93,8 @@
     <string name="player_deletion_yes">Yes</string>
     <string name="player_deletion_no">No</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_image_desc">User image</string>
+
 </resources>

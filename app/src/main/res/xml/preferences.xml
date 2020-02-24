@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.PreferenceCategory
+
+        android:title="@string/prefGameCategory_title">
+
+        ​
+
+        <androidx.preference.ListPreference
+
+            android:title="@string/prefGameMode_title"
+            android:defaultValue="@string/prefGameMode_defaultValue"
+            android:key="@string/prefGameMode_key"
+            android:icon="@drawable/ic_game_mode_black_24dp"
+            android:entryValues="@array/prefGameMode_entryValues"
+            android:entries="@array/prefGameMode_entries"
+            app:useSimpleSummaryProvider="true"/>
+
+        ​
+
+        <androidx.preference.ListPreference
+            android:title="@string/prefGameTime_title"
+            android:defaultValue="@string/prefGameTime_defaultValue"
+            android:key="@string/prefGameTime_key"
+            android:icon="@drawable/ic_game_time_black_24dp"
+            android:entries="@array/prefGameTime_entries"
+            android:entryValues="@array/prefGameTime_entryValues"
+            app:useSimpleSummaryProvider="true" />
+
+        <androidx.preference.ListPreference
+            android:defaultValue="@string/prefWordTime_defaultValue"
+            android:entries="@array/prefWordTime_entries"
+            android:entryValues="@array/prefWordTime_entryValues"
+            android:icon="@drawable/ic_word_time_black_24dp"
+            android:key="@string/prefWordTime_key"
+            android:title="@string/prefWordTime_title"
+            app:useSimpleSummaryProvider="true" />
+
+
+
+        ​
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/prefRankingCategory_title">
+
+        <androidx.preference.ListPreference
+            android:defaultValue="@string/prefRankingFilter_defaultValue"
+            android:entries="@array/ranking_spnGameMode"
+            android:entryValues="@array/ranking_spnGameMode_values"
+            android:icon="@drawable/ic_filter_list_black_24dp"
+            android:key="@string/prefRankingFilter_key"
+            android:title="@string/prefRankingCategory_title"
+            app:useSimpleSummaryProvider="true"/>
+    </androidx.preference.PreferenceCategory>
+
+</PreferenceScreen>
