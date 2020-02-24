@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.stroop.ui
 
+import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -16,6 +16,36 @@ class MainFragment : Fragment() {
 
     private val navCtrl: NavController by lazy {
         findNavController()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        println(item.itemId)
+        return when(item.itemId){
+            R.id.mnuHelp -> {
+                showDialog(getString(R.string.dashboard_help_description))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+
+    private fun showDialog(message: String) {
+        val dialog: Dialog = AlertDialog.Builder(context!!)
+            .setTitle(getString(R.string.help_title))
+            .setMessage(message)
+            .setPositiveButton(R.string.help_accept) { _, _-> }
+            .create()
     }
 
     override fun onCreateView(

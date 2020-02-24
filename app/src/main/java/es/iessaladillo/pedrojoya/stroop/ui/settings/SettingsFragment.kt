@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceFragmentCompat
 import es.iessaladillo.pedrojoya.stroop.R
 import kotlinx.android.synthetic.main.settings_fragment.*
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : Fragment() {
     val navCtrl: NavController by lazy {
         findNavController()
     }
@@ -22,10 +22,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.settings_fragment, container, false)
-    }
-
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.preferences, rootKey)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -39,5 +35,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.settings_title)
         assistant_toolbar.setNavigationOnClickListener { navCtrl.navigateUp() }
+
     }
 }
