@@ -47,4 +47,5 @@ data class GameWithPlayer(
         entityColumn = "id"
     )
     val player:Player
+
 )

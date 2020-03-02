@@ -83,11 +83,19 @@ class EditFragment : Fragment() {
                 true
             }
             R.id.mnuHelp -> {
-                DialogGenerator.showDialog(
-                    getString(R.string.player_edition_title),
-                    getString(R.string.player_edition_help_description),
-                    context!!
-                )
+                if(viewmodel.playerCreatorTrigger){
+                    DialogGenerator.showDialog(
+                        getString(R.string.player_creation_title),
+                        getString(R.string.player_creation_help_description),
+                        context!!
+                    )
+                }else{
+                    DialogGenerator.showDialog(
+                        getString(R.string.player_edition_title),
+                        getString(R.string.player_edition_help_description),
+                        context!!
+                    )
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

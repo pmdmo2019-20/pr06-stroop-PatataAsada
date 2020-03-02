@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/ranking_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -39,7 +39,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/ranking_item_gameMode"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/ranking_toolbar" />
 
         <Spinner
             android:id="@+id/spnGamemode"
@@ -62,6 +62,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider"
-            tools:listitem="@layout/ranking_fragment_item"/>
+            tools:listitem="@layout/ranking_fragment_item" />
+
+        <TextView
+            android:id="@+id/lblEmptyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/ranking_no_games_yet"
+            android:textColor="@color/rankingOption"
+            app:layout_constraintEnd_toEndOf="@+id/lstRanking"
+            app:layout_constraintStart_toStartOf="@+id/lstRanking"
+            app:layout_constraintTop_toBottomOf="@+id/imgRanking" />
+
+        <ImageView
+            android:id="@+id/imgRanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_ranking_black_48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/lstRanking"
+            app:layout_constraintStart_toStartOf="@+id/lstRanking"
+            app:layout_constraintTop_toTopOf="@+id/lstRanking"
+            app:layout_constraintVertical_bias="0.443"
+            android:tint="@color/rankingOption"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -40,7 +40,11 @@
         android:id="@+id/gameFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.game.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/assistantFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment"

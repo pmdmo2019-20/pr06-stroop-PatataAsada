@@ -6,15 +6,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
-import es.iessaladillo.pedrojoya.stroop.avatars
 import es.iessaladillo.pedrojoya.stroop.data.AppDatabase
+import es.iessaladillo.pedrojoya.stroop.data.model.Game
 import es.iessaladillo.pedrojoya.stroop.data.model.GameWithPlayer
 import es.iessaladillo.pedrojoya.stroop.data.model.Player
-import kotlinx.coroutines.android.awaitFrame
-import kotlin.concurrent.thread
 
 class MainViewmodel(application: Application, private val database:AppDatabase) : ViewModel() {
     private val settings:SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(application) }
+
+    var gameToShow:GameWithPlayer? = null
 
     var playerCreatorTrigger:Boolean = true
     private var _newAvatar:MutableLiveData<Int> = MutableLiveData(0)
@@ -23,14 +23,22 @@ class MainViewmodel(application: Application, private val database:AppDatabase) 
     private var _listPlayers:MutableLiveData<List<Player>> = MutableLiveData(database.playerDao.queryAllPlayers())
     val listPlayers:LiveData<List<Player>> get() = _listPlayers
 
-    private var _listRanking:MutableLiveData<List<GameWithPlayer>> = MutableLiveData(getRankings())
+    private var _listRanking:MutableLiveData<List<GameWithPlayer>> = MutableLiveData(getRankings(
+        null
+    )
+    )
     val listRanking:LiveData<List<GameWithPlayer>> get() = _listRanking
 
     private var _selectedPlayer:MutableLiveData<Player?> = MutableLiveData(null)
     val selectedPlayer:LiveData<Player?> get() = _selectedPlayer
 
-    private fun getRankings():List<GameWithPlayer>{
-        return when (settings.getString("gamemode","All")) {
+    private fun getRankings(selectedItem: String?):List<GameWithPlayer>{
+        return if(selectedItem.isNullOrBlank()) filterGamesWithPlayer(settings.getString("gamemode","All")!!)
+        else filterGamesWithPlayer(selectedItem)
+    }
+
+    private fun filterGamesWithPlayer(selector:String): List<GameWithPlayer> {
+        return when (selector) {
             "Time" -> database.gameDao.queryGamesByTime()
             "Attempts" -> database.gameDao.queryGamesByAttmenpt()
             else -> database.gameDao.queryAllGames()
@@ -66,5 +74,9 @@ class MainViewmodel(application: Application, private val database:AppDatabase) 
 
     private fun updateListPlayers(result:Int?) {
         _listPlayers.value = database.playerDao.queryAllPlayers()
+    }
+
+    fun queryBy(selectedItem: String?) {
+        getRankings(selectedItem)
     }
 }
