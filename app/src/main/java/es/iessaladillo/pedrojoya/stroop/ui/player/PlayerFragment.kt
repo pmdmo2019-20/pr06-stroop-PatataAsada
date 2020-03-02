@@ -5,12 +5,12 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.DialogGenerator
@@ -19,7 +19,6 @@ import es.iessaladillo.pedrojoya.stroop.data.model.Player
 import es.iessaladillo.pedrojoya.stroop.ui.MainViewmodel
 import es.iessaladillo.pedrojoya.stroop.ui.MainViewmodelFactory
 import kotlinx.android.synthetic.main.fragment_player.*
-import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.user_selected.*
 
 
@@ -34,9 +33,7 @@ class PlayerFragment : Fragment() {
             setSelectedPlayer(it.currentList[position])
         }
     }
-    private val viewmodel:MainViewmodel by viewModels {
-        MainViewmodelFactory(activity!!.application, AppDatabase.getInstance(activity!!.application))
-    }
+    private lateinit var viewmodel:MainViewmodel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,10 +65,17 @@ class PlayerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupViewModel()
         setupObservers()
         setupToolbar()
         setupReciclerView()
         setupButtons()
+    }
+
+    private fun setupViewModel() {
+        viewmodel = requireActivity().run {
+            ViewModelProvider(this).get(MainViewmodel::class.java)
+        }
     }
 
     private fun setupToolbar() {
@@ -83,18 +87,18 @@ class PlayerFragment : Fragment() {
     }
 
     private fun setupButtons() {
-        fabCreate.setOnClickListener{ createPlayer() }
+        btnEdit.setOnClickListener { edit(false) }
+        fabCreate.setOnClickListener{ edit(true) }
     }
 
-    private fun createPlayer() {
-        viewmodel.setCreationTrigger(true)
+    private fun edit(bool:Boolean) {
+        viewmodel.setCreationTrigger(bool)
         navCtrl.navigate(R.id.action_playerFragment_to_editFragment)
     }
 
     private fun setupReciclerView() {
         listPLayers.run {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()
             addItemDecoration(
                 DividerItemDecoration(requireContext(),
@@ -115,7 +119,7 @@ class PlayerFragment : Fragment() {
     private fun updateListPlayers(list: List<Player>) {
         listPLayers.post {
             playerAdapter.submitList(list)
-            lblEmptyView.visibility = if(list.isEmpty()) View.INVISIBLE else View.VISIBLE
+            lblEmptyView.visibility = if(list.isNotEmpty()) View.INVISIBLE else View.VISIBLE
         }
     }
 

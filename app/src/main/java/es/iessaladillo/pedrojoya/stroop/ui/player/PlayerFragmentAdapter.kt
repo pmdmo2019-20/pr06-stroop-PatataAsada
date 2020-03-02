@@ -42,7 +42,6 @@ class PlayerFragmentAdapter :
         fun bind(player: Player) {
             containerView.lblName.text = player.name
             containerView.imgAvatar.setImageResource(player.imgResId)
-            containerView.setOnClickListener { v -> }
         }
 
     }

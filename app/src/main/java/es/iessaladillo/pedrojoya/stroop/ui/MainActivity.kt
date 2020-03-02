@@ -10,12 +10,13 @@ import kotlinx.android.synthetic.main.settings_fragment.*
 
 class MainActivity : AppCompatActivity() {
 
-    val viewmodel:MainViewmodel by viewModels {
+    private val viewmodel:MainViewmodel by viewModels {
         MainViewmodelFactory(application, AppDatabase.getInstance(applicationContext))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        viewmodel
     }
 }

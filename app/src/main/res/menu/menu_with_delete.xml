@@ -3,9 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/mnuDelete"
+        android:icon="@drawable/ic_delete_black_24dp"
+        android:title="@string/player_edition_mnuDelete"
+        app:showAsAction="ifRoom|withText"
+        android:iconTint="@color/white"
+        tools:ignore="UnusedAttribute" />
+    <item
         android:id="@+id/mnuHelp"
         android:icon="@drawable/ic_help_black_24dp"
         android:title="@string/help_title"
         app:showAsAction="ifRoom|withText"
-        android:iconTint="@color/white"/>
+        android:iconTint="@color/white"
+        tools:ignore="UnusedAttribute" />
 </menu>

@@ -6,51 +6,47 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
-import es.iessaladillo.pedrojoya.stroop.data.model.Avatar
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.edit_fragment_item.*
 
 class EditFragmentAdapter :
-    androidx.recyclerview.widget.ListAdapter<Avatar, EditFragmentAdapter.ViewHolder>(
-        EditFragmentAdapter.AvatarDiffCallBack
+    androidx.recyclerview.widget.ListAdapter<Int, EditFragmentAdapter.ViewHolder>(
+        AvatarDiffCallBack
     ) {
 
-    var onItemClickListener: ((Int)->Unit)? = null
+    var onItemClickListener: ((Int) -> Unit)? = null
 
-    fun getImgResId(position: Int): Int = currentList[position].imgResId
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): EditFragmentAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemView = layoutInflater.inflate(R.layout.edit_fragment_item, parent, false)
-        return EditFragmentAdapter.ViewHolder(itemView, onItemClickListener)
+        return ViewHolder(itemView, onItemClickListener)
     }
 
-    fun setOnClickListener(listener:((Int)->Unit)?){
+    fun setOnClickListener(listener: ((Int) -> Unit)?) {
         onItemClickListener = listener
     }
 
 
-    override fun onBindViewHolder(holder: EditFragmentAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
 
-    class ViewHolder(override val containerView: View,onItemClickListener: ((Int)->Unit)?) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    class ViewHolder(override val containerView: View, onItemClickListener: ((Int) -> Unit)?) :
+        RecyclerView.ViewHolder(containerView), LayoutContainer {
         init {
             containerView.setOnClickListener { onItemClickListener?.invoke(adapterPosition) }
         }
-        fun bind(avatar: Avatar){
-            imgAvatar.setImageResource(avatar.imgResId)
+
+        fun bind(avatar: Int) {
+            imgAvatar.setImageResource(avatar)
         }
     }
 
-    object AvatarDiffCallBack : DiffUtil.ItemCallback<Avatar>() {
+    object AvatarDiffCallBack : DiffUtil.ItemCallback<Int>() {
 
-        override fun areItemsTheSame(oldItem: Avatar, newItem: Avatar): Boolean = oldItem.imgResId == newItem.imgResId
+        override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: Avatar, newItem: Avatar): Boolean = oldItem.imgResId == newItem.imgResId
+        override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean = oldItem == newItem
 
     }
 }

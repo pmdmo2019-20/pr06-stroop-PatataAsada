@@ -49,14 +49,15 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="16dp"
                 android:ems="10"
-                android:hint="(nickname)"
+                android:hint="@string/player_edition_txtName"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textSize="@dimen/main_textSize_4x"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgPlayer" />
+                app:layout_constraintTop_toBottomOf="@+id/imgPlayer"
+                android:textColor="@color/white"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -64,6 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:paddingTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,6 +85,7 @@
             android:src="@drawable/ic_save_black_24dp"
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="KeyboardInaccessibleWidget" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

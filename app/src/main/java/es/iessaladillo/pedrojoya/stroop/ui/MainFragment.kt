@@ -8,6 +8,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -25,9 +26,7 @@ class MainFragment : Fragment() {
         findNavController()
     }
 
-    private val viewmodel:MainViewmodel by viewModels {
-        MainViewmodelFactory(activity!!.application, AppDatabase.getInstance(requireContext()))
-    }
+    private lateinit var viewmodel:MainViewmodel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,9 +70,15 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupViewModel()
         setupToolbar()
         setupObservers()
         setupButtons()
+    }
+    private fun setupViewModel() {
+        viewmodel = requireActivity().run {
+            ViewModelProvider(this).get(MainViewmodel::class.java)
+        }
     }
 
     private fun setupToolbar() {

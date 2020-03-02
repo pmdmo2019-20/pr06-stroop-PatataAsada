@@ -65,10 +65,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/player_selection_no_players_yet"
-            app:layout_constraintBottom_toBottomOf="@+id/rvPlayers"
-            app:layout_constraintEnd_toEndOf="@+id/rvPlayers"
-            app:layout_constraintStart_toStartOf="@+id/rvPlayers"
-            app:layout_constraintTop_toTopOf="@+id/rvPlayers" />
+            app:layout_constraintBottom_toBottomOf="@+id/listPLayers"
+            app:layout_constraintEnd_toEndOf="@+id/listPLayers"
+            app:layout_constraintStart_toStartOf="@+id/listPLayers"
+            app:layout_constraintTop_toTopOf="@+id/listPLayers" />
 
         <Button
             android:id="@+id/btnEdit"
