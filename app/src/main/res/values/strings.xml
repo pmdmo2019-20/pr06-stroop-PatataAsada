@@ -96,5 +96,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="user_image_desc">User image</string>
+    <string name="assistant_img_icon">Assistant_img_icon</string>
 
 </resources>

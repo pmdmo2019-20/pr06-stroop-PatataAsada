@@ -9,26 +9,29 @@
 
         <androidx.preference.ListPreference
 
-            android:title="@string/prefGameMode_title"
+            android:id="@+id/gamemode"
             android:defaultValue="@string/prefGameMode_defaultValue"
-            android:key="@string/prefGameMode_key"
-            android:icon="@drawable/ic_game_mode_black_24dp"
-            android:entryValues="@array/prefGameMode_entryValues"
             android:entries="@array/prefGameMode_entries"
-            app:useSimpleSummaryProvider="true"/>
+            android:entryValues="@array/prefGameMode_entryValues"
+            android:icon="@drawable/ic_game_mode_black_24dp"
+            android:key="@string/prefGameMode_key"
+            android:title="@string/prefGameMode_title"
+            app:useSimpleSummaryProvider="true" />
 
         ​
 
         <androidx.preference.ListPreference
-            android:title="@string/prefGameTime_title"
+            android:id="@+id/gametime"
             android:defaultValue="@string/prefGameTime_defaultValue"
-            android:key="@string/prefGameTime_key"
-            android:icon="@drawable/ic_game_time_black_24dp"
             android:entries="@array/prefGameTime_entries"
             android:entryValues="@array/prefGameTime_entryValues"
+            android:icon="@drawable/ic_game_time_black_24dp"
+            android:key="@string/prefGameTime_key"
+            android:title="@string/prefGameTime_title"
             app:useSimpleSummaryProvider="true" />
 
         <androidx.preference.ListPreference
+            android:id="@+id/wordtime"
             android:defaultValue="@string/prefWordTime_defaultValue"
             android:entries="@array/prefWordTime_entries"
             android:entryValues="@array/prefWordTime_entryValues"
@@ -38,7 +41,17 @@
             app:useSimpleSummaryProvider="true" />
 
 
-
+        <EditTextPreference
+            android:id="@+id/attempts"
+            android:defaultValue="@string/prefAttempts_defaultValue"
+            android:dialogTitle="@string/prefAttempts_dialogTitle"
+            android:icon="@drawable/ic_attempts_black_24dp"
+            android:inputType="number"
+            android:key="@string/prefAttempts_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/prefAttempts_title"
+            app:useSimpleSummaryProvider="true" />
         ​
     </androidx.preference.PreferenceCategory>
 
@@ -46,13 +59,14 @@
         android:title="@string/prefRankingCategory_title">
 
         <androidx.preference.ListPreference
+            android:id="@+id/ranking"
             android:defaultValue="@string/prefRankingFilter_defaultValue"
             android:entries="@array/ranking_spnGameMode"
             android:entryValues="@array/ranking_spnGameMode_values"
             android:icon="@drawable/ic_filter_list_black_24dp"
             android:key="@string/prefRankingFilter_key"
             android:title="@string/prefRankingCategory_title"
-            app:useSimpleSummaryProvider="true"/>
+            app:useSimpleSummaryProvider="true" />
     </androidx.preference.PreferenceCategory>
 
 </PreferenceScreen>

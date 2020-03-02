@@ -9,7 +9,7 @@
 
     <dimen name="main_textSize_1x">16sp</dimen>
     <dimen name="main_textSize_2x">20sp</dimen>
-    <dimen name="main_textSize_3x" tools:ignore="UnusedResources">24sp</dimen>
+    <dimen name="main_textSize_3x" >24sp</dimen>
     <dimen name="main_textSize_4x">28sp</dimen>
     <dimen name="main_textSize_5x">32sp</dimen>
     <dimen name="main_textSize_6x">50sp</dimen>

@@ -1,14 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.game.GameFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/prefWordTime_defaultValue"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintEnd_toStartOf="@+id/txtCorrect"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtCorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/prefWordTime_defaultValue"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintEnd_toStartOf="@+id/txtCorrect2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/txtWords"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtCorrect2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/prefWordTime_defaultValue"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/txtCorrect"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/game_lblWordsLabel"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtWords"
+                app:layout_constraintStart_toStartOf="@+id/txtWords"
+                app:layout_constraintTop_toBottomOf="@+id/txtWords" />
+
+            <TextView
+                android:id="@+id/lblWords2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/game_lblWordsLabel"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintEnd_toEndOf="@+id/txtCorrect"
+                app:layout_constraintStart_toEndOf="@+id/txtCorrect"
+                app:layout_constraintStart_toStartOf="@+id/txtCorrect"
+                app:layout_constraintTop_toBottomOf="@+id/txtCorrect" />
+
+            <TextView
+                android:id="@+id/lblWords3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/game_lblWordsLabel"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintEnd_toEndOf="@+id/txtCorrect2"
+                app:layout_constraintStart_toStartOf="@+id/txtCorrect2"
+                app:layout_constraintTop_toBottomOf="@+id/txtCorrect2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/pbTime"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/main_selection_bar_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+        <TextView
+            android:id="@+id/lblWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="@dimen/main_textSize_7x"
+            app:layout_constraintBottom_toTopOf="@+id/btnWrong"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pbTime" />
+
+        <ImageView
+            android:id="@+id/btnRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_right_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/btnWrong"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/rightAnswer" />
+
+        <ImageView
+            android:id="@+id/btnWrong"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_wrong_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnRight"
+            app:tint="@color/wrongAnswer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

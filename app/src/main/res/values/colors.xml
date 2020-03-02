@@ -17,7 +17,7 @@
     <color name="playerOption">#CC33CC</color>
     <color name="aboutOption">#F44236</color>
     <color name="stroopOption">#871616</color>
-    <color name="finishOption">#adba49</color>
+    <color name="finishOption">#ADBA49</color>
 
     <color name="rightAnswer">#7986cb</color>
     <color name="wrongAnswer">#e57373</color>

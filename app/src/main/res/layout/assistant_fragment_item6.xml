@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/aboutOption">
+
+        <ImageView
+            android:id="@+id/imgAssistant"
+            android:layout_width="@dimen/assistant_imgIcon_size"
+            android:layout_height="@dimen/assistant_imgIcon_size"
+            android:layout_marginTop="@dimen/assistant_imgIcon_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_black_24dp"
+            android:tint="@color/white"
+            android:contentDescription="@string/assistant_img_icon" />
+
+        <TextView
+            android:id="@+id/txtAssistant"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/assistant_aboutDescription"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_textSize_3x"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAssistant" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

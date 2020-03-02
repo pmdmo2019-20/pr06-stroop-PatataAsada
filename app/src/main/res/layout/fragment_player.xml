@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.player.PlayerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listPLayers"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="24dp"
+            android:paddingTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintVertical_bias="1.0"
+            app:spanCount="@integer/player_selection_numColumns"
+            tools:itemCount="10"
+            tools:listitem="@layout/player_item" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/player_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/user_selected"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player_toolbar" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:tint="@color/white"
+            android:src="@drawable/ic_player_add_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="KeyboardInaccessibleWidget" />
+
+        <TextView
+            android:id="@+id/lblEmptyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_selection_no_players_yet"
+            app:layout_constraintBottom_toBottomOf="@+id/rvPlayers"
+            app:layout_constraintEnd_toEndOf="@+id/rvPlayers"
+            app:layout_constraintStart_toStartOf="@+id/rvPlayers"
+            app:layout_constraintTop_toTopOf="@+id/rvPlayers" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:visibility="invisible"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/primary"
+            android:drawableStart="@drawable/ic_player_edition_black_24dp"
+            android:drawableTint="@color/white"
+            android:text="@string/player_selection_btnEdit"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/include"
+            app:layout_constraintTop_toTopOf="@+id/include"
+            tools:ignore="UnusedAttribute" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
