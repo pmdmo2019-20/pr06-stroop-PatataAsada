@@ -6,39 +6,53 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
+import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.AppDatabase
 import es.iessaladillo.pedrojoya.stroop.data.model.Game
 import es.iessaladillo.pedrojoya.stroop.data.model.GameWithPlayer
 import es.iessaladillo.pedrojoya.stroop.data.model.Player
 
-class MainViewmodel(application: Application, private val database:AppDatabase) : ViewModel() {
-    val settings:SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(application) }
+class MainViewmodel(private val application: Application, private val database: AppDatabase) :
+    ViewModel() {
+    val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(
+            application
+        )
+    }
 
-    var gameToShow:GameWithPlayer? = null
-    var fromGameFragment:Boolean = false
+    var gameToShow: GameWithPlayer? = null
+    var fromGameFragment: Boolean = false
 
-    var playerCreatorTrigger:Boolean = true
-    private var _newAvatar:MutableLiveData<Int> = MutableLiveData(0)
-    val newAvatar:LiveData<Int> get() = _newAvatar
+    var playerCreatorTrigger: Boolean = true
+    private var _newAvatar: MutableLiveData<Int> = MutableLiveData(0)
+    val newAvatar: LiveData<Int> get() = _newAvatar
 
-    private var _listPlayers:MutableLiveData<List<Player>> = MutableLiveData(database.playerDao.queryAllPlayers())
-    val listPlayers:LiveData<List<Player>> get() = _listPlayers
+    private var _listPlayers: MutableLiveData<List<Player>> =
+        MutableLiveData(database.playerDao.queryAllPlayers())
+    val listPlayers: LiveData<List<Player>> get() = _listPlayers
 
-    private var _listRanking:MutableLiveData<List<GameWithPlayer>> = MutableLiveData(getRankings(
-        null
+    private var _listRanking: MutableLiveData<List<GameWithPlayer>> = MutableLiveData(
+        getRankings(
+            null
+        )
     )
-    )
-    val listRanking:LiveData<List<GameWithPlayer>> get() = _listRanking
+    val listRanking: LiveData<List<GameWithPlayer>> get() = _listRanking
 
-    private var _selectedPlayer:MutableLiveData<Player?> = MutableLiveData(null)
-    val selectedPlayer:LiveData<Player?> get() = _selectedPlayer
+    private var _selectedPlayer: MutableLiveData<Player?> = MutableLiveData(null)
+    val selectedPlayer: LiveData<Player?> get() = _selectedPlayer
 
-    private fun getRankings(selectedItem: String?):List<GameWithPlayer>{
-        return if(selectedItem.isNullOrBlank()) filterGamesWithPlayer(settings.getString("gamemode","All")!!)
+    private fun getRankings(selectedItem: String?): List<GameWithPlayer> {
+        return if (selectedItem.isNullOrBlank()) filterGamesWithPlayer(
+            settings.getString(
+                application.getString(
+                    R.string.prefRankingFilter_key
+                ), "All"
+            )!!
+        )
         else filterGamesWithPlayer(selectedItem)
     }
 
-    private fun filterGamesWithPlayer(selector:String): List<GameWithPlayer> {
+    private fun filterGamesWithPlayer(selector: String): List<GameWithPlayer> {
         return when (selector) {
             "Time" -> database.gameDao.queryGamesByTime()
             "Attempts" -> database.gameDao.queryGamesByAttmenpt()
@@ -46,17 +60,17 @@ class MainViewmodel(application: Application, private val database:AppDatabase) 
         }
     }
 
-    fun createPlayer(player:Player){
+    fun createPlayer(player: Player) {
         setSelectedPlayer(database.playerDao.queryPlayer(database.playerDao.insertPlayer(player)))
         updateListPlayers(null)
     }
 
-    fun updatePlayer(player:Player){
+    fun updatePlayer(player: Player) {
         updateListPlayers(database.playerDao.updatePlayer(player))
         setSelectedPlayer(database.playerDao.queryPlayer(player.id))
     }
 
-    fun deletePlayer(player:Player){
+    fun deletePlayer(player: Player) {
         setSelectedPlayer(null)
         updateListPlayers(database.playerDao.deletePlayer(player))
     }
@@ -73,20 +87,20 @@ class MainViewmodel(application: Application, private val database:AppDatabase) 
         _newAvatar.value = avatar
     }
 
-    private fun updateListPlayers(result:Int?) {
+    private fun updateListPlayers(result: Int?) {
         _listPlayers.value = database.playerDao.queryAllPlayers()
     }
 
     fun queryBy(selectedItem: String?) {
-        getRankings(selectedItem)
+        _listRanking.value = getRankings(selectedItem)
     }
 
     fun createGame(game: Game) {
-        database.gameDao.insertGame(game)
+        kotlin.run { database.gameDao.insertGame(game) }
         gameToShow = database.gameDao.queryLastGame()
     }
 
-    fun showGame(gameWithPlayer: GameWithPlayer){
+    fun showGame(gameWithPlayer: GameWithPlayer) {
         gameToShow = gameWithPlayer
     }
 }

@@ -84,6 +84,7 @@ class GameFragment : Fragment() {
 
     private fun setupGame() {
         gameViewmodel.startGameThread(gameViewmodel.time, gameViewmodel.wordTime)
+        if(gameViewmodel.gamemode == "Attempts") lblExtra.text = gameViewmodel.gamemode
     }
 
     private fun setupObservers() {

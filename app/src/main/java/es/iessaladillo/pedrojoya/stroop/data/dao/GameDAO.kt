@@ -13,7 +13,7 @@ interface GameDAO {
     @Query("SELECT * FROM game WHERE gamemode='Time' ORDER BY correct DESC")
     fun queryGamesByTime():List<GameWithPlayer>
 
-    @Query("SELECT * FROM game WHERE gamemode='Attempt' ORDER BY correct DESC")
+    @Query("SELECT * FROM game WHERE gamemode='Attempts' ORDER BY correct DESC")
     fun queryGamesByAttmenpt():List<GameWithPlayer>
 
     @Insert

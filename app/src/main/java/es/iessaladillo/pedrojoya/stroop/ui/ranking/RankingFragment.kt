@@ -78,6 +78,7 @@ class RankingFragment : Fragment() {
     }
 
     private fun setupSpinner() {
+        spnGamemode.setSelection(chooseSelection())
         spnGamemode.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 viewmodel.queryBy(null)
@@ -86,6 +87,14 @@ class RankingFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 viewmodel.queryBy(spnGamemode.selectedItem.toString())
             }
+        }
+    }
+
+    private fun chooseSelection(): Int {
+        return when(viewmodel.settings.getString(getString(R.string.prefRankingFilter_key),"All")){
+            "Time" -> 1
+            "Attempts" -> 2
+            else -> 0
         }
     }
 

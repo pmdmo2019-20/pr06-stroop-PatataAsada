@@ -17,7 +17,7 @@ class RankingFragmentAdapter: ListAdapter<GameWithPlayer,RankingFragmentAdapter.
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val itemView = layoutInflater.inflate(R.layout.player_item, parent, false)
+        val itemView = layoutInflater.inflate(R.layout.ranking_fragment_item, parent, false)
         return ViewHolder(itemView, onItemClickListener)
     }
 
@@ -42,6 +42,11 @@ class RankingFragmentAdapter: ListAdapter<GameWithPlayer,RankingFragmentAdapter.
         override val containerView: View,
         onItemClickListener: ((Int) -> Unit)?
     ):RecyclerView.ViewHolder(containerView),LayoutContainer {
+
+        init {
+            containerView.setOnClickListener { onItemClickListener?.invoke(adapterPosition) }
+        }
+
         fun bind(gameWithPlayer: GameWithPlayer){
             img_ranking.setImageResource(gameWithPlayer.player.imgResId)
             lblName.text = gameWithPlayer.player.name

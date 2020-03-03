@@ -13,6 +13,7 @@ import es.iessaladillo.pedrojoya.stroop.ui.MainViewmodel
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_result.*
+import kotlinx.android.synthetic.main.user_selected.*
 
 
 class ResultFragment : Fragment() {
@@ -69,6 +70,8 @@ class ResultFragment : Fragment() {
         txtCorrectAnswers.text = viewmodel.gameToShow!!.game.correct.toString()
         txtIncorrectAnswers.text = (viewmodel.gameToShow!!.game.words - viewmodel.gameToShow!!.game.correct).toString()
         txtPoints.text = viewmodel.gameToShow!!.game.points.toString()
+        img_player.setImageResource(viewmodel.gameToShow!!.player.imgResId)
+        lbl_player_name.text = viewmodel.gameToShow!!.player.name
     }
 
 }

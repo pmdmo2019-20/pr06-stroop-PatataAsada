@@ -57,19 +57,26 @@ class GameViewModel(var time: Int, val wordTime: Int, var gamemode: String, var 
 
     fun checkRight() {
         currentWordMillis = 0
-        checkTruth(true)
+        if(!checkTruth(true)) reduceAttempt()
         nextWord()
+    }
+
+    private fun reduceAttempt() {
+        _attemnptsLeft.value = _attemnptsLeft.value!! - 1
+        if(attemptsLeft.value == 0) onGameTimeFinish()
     }
 
     fun checkWrong() {
         currentWordMillis = 0
-        checkTruth(false)
+        if(!checkTruth(false)) reduceAttempt()
         nextWord()
     }
 
-    private fun checkTruth(guess: Boolean) {
+    private fun checkTruth(guess: Boolean):Boolean {
         if (wordTruth == guess) _correctGuess.value = _correctGuess.value!! + 1
         _words.value = _words.value!! + 1
+
+        return wordTruth==guess
     }
 
     fun startGameThread(gameTime: Int, wordTime: Int) {
