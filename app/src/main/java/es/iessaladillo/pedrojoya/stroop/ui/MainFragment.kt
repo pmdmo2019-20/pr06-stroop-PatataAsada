@@ -97,7 +97,10 @@ class MainFragment : Fragment() {
 
     private fun navigate(to: String) {
         when (to) {
-            "Play" -> navCtrl.navigate(R.id.action_mainFragment_to_gameFragment)
+            "Play" -> {
+                if(viewmodel.selectedPlayer.value != null) navCtrl.navigate(R.id.action_mainFragment_to_gameFragment)
+                else navCtrl.navigate(R.id.action_mainFragment_to_playerFragment)
+            }
             "Player" -> navCtrl.navigate(R.id.action_mainFragment_to_playerFragment)
             "Assistant" -> navCtrl.navigate(R.id.action_mainFragment_to_assistantFragment)
             "Settings" -> navCtrl.navigate(R.id.action_mainFragment_to_settingsFragment)

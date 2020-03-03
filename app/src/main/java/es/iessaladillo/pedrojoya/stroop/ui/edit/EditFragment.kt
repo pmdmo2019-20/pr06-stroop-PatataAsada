@@ -7,10 +7,8 @@ import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
@@ -21,10 +19,9 @@ import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.avatars
 import es.iessaladillo.pedrojoya.stroop.base.DialogGenerator
-import es.iessaladillo.pedrojoya.stroop.data.AppDatabase
 import es.iessaladillo.pedrojoya.stroop.data.model.Player
+import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
 import es.iessaladillo.pedrojoya.stroop.ui.MainViewmodel
-import es.iessaladillo.pedrojoya.stroop.ui.MainViewmodelFactory
 import kotlinx.android.synthetic.main.fragment_edit.*
 
 
@@ -161,6 +158,7 @@ class EditFragment : Fragment() {
     }
 
     private fun exitEditFragment() {
+        view!!.hideSoftKeyboard()
         navCtrl.popBackStack()
     }
 

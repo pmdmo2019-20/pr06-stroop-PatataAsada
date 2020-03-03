@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.DialogGenerator
 import es.iessaladillo.pedrojoya.stroop.data.model.GameWithPlayer
@@ -68,9 +71,9 @@ class RankingFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViewModel()
+        setupReciclerView()
         setupObservers()
         setupToolbar()
-        setupReciclerView()
         setupSpinner()
     }
 
@@ -99,7 +102,14 @@ class RankingFragment : Fragment() {
     }
 
     private fun setupReciclerView() {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        lstRanking.run {
+            setHasFixedSize(true)
+            itemAnimator = DefaultItemAnimator()
+            addItemDecoration(
+                DividerItemDecoration(requireContext(),
+                    RecyclerView.VERTICAL)
+            )
+            adapter = rankingFragmentAdapter }
     }
 
     private fun setupToolbar() {

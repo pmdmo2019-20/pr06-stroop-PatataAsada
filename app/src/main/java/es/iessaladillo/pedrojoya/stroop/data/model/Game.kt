@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.stroop.data.model
 
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
+import es.iessaladillo.pedrojoya.stroop.POINTS_PER_CORRECT_ANSWER
 
 @Entity(
     tableName = "game",
@@ -36,7 +37,7 @@ data class Game(
     @ColumnInfo(name = "player_id")
     val player_id: Long
 ) {
-    val points: Int get() = correct * 10
+    val points: Int get() = correct * POINTS_PER_CORRECT_ANSWER
 }
 
 data class GameWithPlayer(

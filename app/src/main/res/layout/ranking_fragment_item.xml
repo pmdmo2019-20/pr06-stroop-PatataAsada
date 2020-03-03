@@ -1,139 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:cardElevation="@dimen/main_card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/img_ranking"
-            android:layout_width="@dimen/player_selection_item_imgAvatar_size"
-            android:layout_height="@dimen/player_selection_item_imgAvatar_size"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/avatar_01_mexican" />
 
-        <TextView
-            android:id="@+id/lblName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/main_textSize_2x"
-            app:layout_constraintStart_toEndOf="@+id/img_ranking"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@tools:sample/last_names" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/lblGamemode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/ranking_item_gameMode"
-            app:layout_constraintStart_toEndOf="@+id/img_ranking"
-            app:layout_constraintTop_toBottomOf="@+id/lblName" />
+            <ImageView
+                android:id="@+id/img_ranking"
+                android:layout_width="@dimen/player_selection_item_imgAvatar_size"
+                android:layout_height="@dimen/player_selection_item_imgAvatar_size"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/avatar_01_mexican" />
 
-        <TextView
-            android:id="@+id/lblTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/ranking_item_time"
-            app:layout_constraintStart_toEndOf="@+id/img_ranking"
-            app:layout_constraintTop_toBottomOf="@+id/lblGamemode" />
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/main_textSize_2x"
+                app:layout_constraintStart_toEndOf="@+id/img_ranking"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/last_names" />
 
-        <TextView
-            android:id="@+id/lblWords"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/ranking_item_words"
-            app:layout_constraintStart_toEndOf="@+id/img_ranking"
-            app:layout_constraintTop_toBottomOf="@+id/lblTime" />
+            <TextView
+                android:id="@+id/lblGamemode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/ranking_item_gameMode"
+                app:layout_constraintStart_toEndOf="@+id/img_ranking"
+                app:layout_constraintTop_toBottomOf="@+id/lblName" />
 
-        <TextView
-            android:id="@+id/lblCorrect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/ranking_item_correct"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_ranking"
-            app:layout_constraintTop_toBottomOf="@+id/lblWords" />
+            <TextView
+                android:id="@+id/lblTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/ranking_item_time"
+                app:layout_constraintStart_toEndOf="@+id/img_ranking"
+                app:layout_constraintTop_toBottomOf="@+id/lblGamemode" />
 
-        <TextView
-            android:id="@+id/txtGamemode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblGamemode"
-            app:layout_constraintStart_toEndOf="@+id/lblGamemode"
-            app:layout_constraintTop_toTopOf="@+id/lblGamemode"
-            tools:text="@tools:sample/cities" />
+            <TextView
+                android:id="@+id/lblWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/ranking_item_words"
+                app:layout_constraintStart_toEndOf="@+id/img_ranking"
+                app:layout_constraintTop_toBottomOf="@+id/lblTime" />
 
-        <TextView
-            android:id="@+id/txtTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblTime"
-            app:layout_constraintStart_toEndOf="@+id/lblTime"
-            app:layout_constraintTop_toTopOf="@+id/lblTime"
-            tools:text="1" />
+            <TextView
+                android:id="@+id/lblCorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/ranking_item_correct"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_ranking"
+                app:layout_constraintTop_toBottomOf="@+id/lblWords" />
 
-        <TextView
-            android:id="@+id/txtWords"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblWords"
-            app:layout_constraintStart_toEndOf="@+id/lblWords"
-            app:layout_constraintTop_toTopOf="@+id/lblWords"
-            tools:text="1" />
+            <TextView
+                android:id="@+id/txtGamemode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/lblGamemode"
+                app:layout_constraintStart_toEndOf="@+id/lblGamemode"
+                app:layout_constraintTop_toTopOf="@+id/lblGamemode"
+                tools:text="@tools:sample/cities" />
 
-        <TextView
-            android:id="@+id/txtCorrect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblCorrect"
-            app:layout_constraintStart_toEndOf="@+id/lblCorrect"
-            app:layout_constraintTop_toTopOf="@+id/lblCorrect"
-            tools:text="1" />
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/lblTime"
+                app:layout_constraintStart_toEndOf="@+id/lblTime"
+                app:layout_constraintTop_toTopOf="@+id/lblTime"
+                tools:text="1" />
 
-        <TextView
-            android:id="@+id/lblPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/game_points"
-            android:textSize="@dimen/main_textSize_2x"
-            app:layout_constraintBottom_toTopOf="@+id/txtPoints"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/txtWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/lblWords"
+                app:layout_constraintStart_toEndOf="@+id/lblWords"
+                app:layout_constraintTop_toTopOf="@+id/lblWords"
+                tools:text="1" />
 
-        <TextView
-            android:id="@+id/txtPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="100"
-            android:textSize="@dimen/main_textSize_3x"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/lblPoints"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/lblPoints"
-            app:layout_constraintTop_toBottomOf="@+id/lblPoints" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/txtCorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/lblCorrect"
+                app:layout_constraintStart_toEndOf="@+id/lblCorrect"
+                app:layout_constraintTop_toTopOf="@+id/lblCorrect"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/lblPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/game_points"
+                android:textSize="@dimen/main_textSize_2x"
+                app:layout_constraintBottom_toTopOf="@+id/txtPoints"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txtPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="100"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/lblPoints"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/lblPoints"
+                app:layout_constraintTop_toBottomOf="@+id/lblPoints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

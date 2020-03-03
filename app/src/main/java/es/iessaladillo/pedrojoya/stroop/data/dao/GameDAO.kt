@@ -24,4 +24,7 @@ interface GameDAO {
 
     @Delete
     fun deleteGame(game:Game)
+
+    @Query("SELECT * FROM game ORDER BY id ASC LIMIT 1")
+    fun queryLastGame(): GameWithPlayer
 }

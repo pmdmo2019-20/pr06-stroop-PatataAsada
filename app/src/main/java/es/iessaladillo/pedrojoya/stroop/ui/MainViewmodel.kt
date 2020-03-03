@@ -12,7 +12,7 @@ import es.iessaladillo.pedrojoya.stroop.data.model.GameWithPlayer
 import es.iessaladillo.pedrojoya.stroop.data.model.Player
 
 class MainViewmodel(application: Application, private val database:AppDatabase) : ViewModel() {
-    private val settings:SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(application) }
+    val settings:SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(application) }
 
     var gameToShow:GameWithPlayer? = null
 
@@ -78,5 +78,14 @@ class MainViewmodel(application: Application, private val database:AppDatabase) 
 
     fun queryBy(selectedItem: String?) {
         getRankings(selectedItem)
+    }
+
+    fun createGame(game: Game) {
+        database.gameDao.insertGame(game)
+        gameToShow = database.gameDao.queryLastGame()
+    }
+
+    fun showGame(gameWithPlayer: GameWithPlayer){
+        gameToShow = gameWithPlayer
     }
 }
