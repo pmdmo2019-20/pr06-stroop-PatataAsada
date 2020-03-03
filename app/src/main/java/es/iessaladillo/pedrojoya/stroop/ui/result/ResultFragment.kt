@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import es.iessaladillo.pedrojoya.stroop.R
@@ -27,22 +28,6 @@ class ResultFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.mnuHelp -> {
-                DialogGenerator.showDialog(getString(R.string.help_title),getString(R.string.dashboard_help_description),context!!)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,16 +38,31 @@ class ResultFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewmodel = requireActivity().run {
+            ViewModelProvider(this).get(MainViewmodel::class.java)
+        }
         setupView()
         setupToolbar()
     }
 
     private fun setupToolbar() {
-        (activity as AppCompatActivity).setSupportActionBar(ranking_toolbar)
+        (activity as AppCompatActivity).setSupportActionBar(result_toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setTitle(if (viewmodel.playerCreatorTrigger) R.string.player_creation_title else R.string.player_edition_title)
-        ranking_toolbar.setNavigationOnClickListener { navCtrl.navigateUp() }
+        (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.game_result_title)
+        setupBackNavigation(viewmodel.fromGameFragment)
+    }
+
+    private fun setupBackNavigation(fromGameFragment: Boolean) {
+        if(fromGameFragment) {
+            viewmodel.fromGameFragment = false
+            result_toolbar.setNavigationOnClickListener {
+                navCtrl.popBackStack(R.id.mainFragment,false)
+            }
+        }
+        else result_toolbar.setNavigationOnClickListener{
+            navCtrl.navigateUp()
+        }
     }
 
     private fun setupView() {

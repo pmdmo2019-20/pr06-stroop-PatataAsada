@@ -15,6 +15,7 @@ class MainViewmodel(application: Application, private val database:AppDatabase) 
     val settings:SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(application) }
 
     var gameToShow:GameWithPlayer? = null
+    var fromGameFragment:Boolean = false
 
     var playerCreatorTrigger:Boolean = true
     private var _newAvatar:MutableLiveData<Int> = MutableLiveData(0)

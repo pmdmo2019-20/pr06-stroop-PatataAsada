@@ -121,6 +121,7 @@ class GameFragment : Fragment() {
                 viewmodel.selectedPlayer.value!!.id
             )
         )
+        viewmodel.fromGameFragment = true
         navCtrl.navigate(R.id.action_gameFragment_to_resultFragment)
     }
 
@@ -128,5 +129,4 @@ class GameFragment : Fragment() {
         btnRight.setOnClickListener { gameViewmodel.checkRight() }
         btnWrong.setOnClickListener { gameViewmodel.checkWrong() }
     }
-
 }
